@@ -141,10 +141,10 @@ $topic_manager = $message->TopicManagement();
 > Note: for all Topic Management 
 > - `$registrationTokenOrTokens` can be string if one token or array if many tokens
 >   ```PHP
->  $registrationTokenOrTokens = __device_token__;
->  // or
->  $registrationTokenOrTokens = [__device_token1__, __device_token2__];
->  ```
+>   $registrationTokenOrTokens = __device_token__;
+>   // or
+>   $registrationTokenOrTokens = [__device_token1__, __device_token2__];
+>   ```
 > - `$topic` is device token in string
 >   ```PHP 
 >   $topic = 'topic-a';
