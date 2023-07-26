@@ -4,7 +4,7 @@
  * @Liberary    Logger
  * @Project     Logger
  * @author      Mohamed Abdulalim (megyptm) <mohamed@maatify.dev>
- * @since       2023-07-25 3:48 PM
+ * @since       2023-07-26 1:20 PM
  * @see         https://www.maatify.dev Maatify.com
  * @link        https://github.com/Maatify/FCM  view project on GitHub
  * @link        https://github.com/Maatify/Logger/ (maatify/logger),
@@ -34,11 +34,9 @@ class FcmSender
     private array $data;
     private Messaging $messaging;
 
-    public function __construct(string $firebase_credentials_json, array $notification, array $data)
+    public function __construct(Messaging $messaging, array $notification, array $data)
     {
-        $this->messaging = (new Factory())
-            ->withServiceAccount($firebase_credentials_json)
-            ->createMessaging();
+        $this->messaging = $messaging;
         $this->notification = $notification;
         $this->data = $data;
     }
@@ -74,11 +72,16 @@ class FcmSender
         return CloudMessage::fromArray($array);
     }
 
-    public function ToTopic(string $topic): CloudMessage
+    /**
+     * @throws MessagingException
+     * @throws FirebaseException
+     */
+    public function ToTopic(string $topic): array
     {
         $array = $this->MessageArrayHandler();
         $array['topic'] = $topic;
-        return CloudMessage::fromArray($array);
+        $array['sound'] = 'default';
+        return $this->messaging->send(CloudMessage::fromArray($array));
     }
 
     private function MessageArrayHandler(): array

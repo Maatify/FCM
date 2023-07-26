@@ -23,6 +23,9 @@
 namespace Maatify\FCM;
 
 
+use Kreait\Firebase\Contract\Messaging;
+use Kreait\Firebase\Factory;
+
 class FcmHandler
 {
     /**
@@ -34,12 +37,14 @@ class FcmHandler
     private array $notification = [];
     private array $data = [];
 
-    private string $firebase_credentials_json;
     public FcmSender $sender;
+    private Messaging $messaging;
 
     public function __construct(string $firebase_credentials_json)
     {
-        $this->firebase_credentials_json = $firebase_credentials_json;
+        $this->messaging = (new Factory())
+            ->withServiceAccount($firebase_credentials_json)
+            ->createMessaging();
     }
 
     public function SetNotification(string $title, string $body, string $imageUrl = ''): static
@@ -49,15 +54,25 @@ class FcmHandler
             'body' => $body,
             'image' => $imageUrl,
         ];
-        $this->sender = new FcmSender($this->firebase_credentials_json, $this->notification, $this->data);
+        $this->sender = new FcmSender($this->messaging, $this->notification, $this->data);
         return $this;
     }
 
     public function SetDate(array $data): static
     {
         $this->data = $data;
-        $this->sender = new FcmSender($this->firebase_credentials_json, $this->notification, $this->data);
+        $this->sender = new FcmSender($this->messaging, $this->notification, $this->data);
         return $this;
+    }
+
+    public function TopicValidation(): FCMTopicValidation
+    {
+        return new FCMTopicValidation($this->messaging);
+    }
+
+    public function TopicManagement(): FCMTopicManager
+    {
+        return new FCMTopicManager($this->messaging);
     }
 
 }
