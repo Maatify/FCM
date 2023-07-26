@@ -47,7 +47,7 @@ class FcmSender
     {
         $messages = array();
         foreach ($devices_token as $device_token){
-            $messages[] = $this->MessageHandler($device_token);
+            $messages[] = $this->TokenMessageHandler($device_token);
         }
         try {
             return (array)$this->messaging->sendAll($messages);
@@ -63,13 +63,21 @@ class FcmSender
      */
     public function ToDeviceToken(string $device_token): array
     {
-        $message = $this->MessageHandler($device_token);
+        $message = $this->TokenMessageHandler($device_token);
         return $this->messaging->send($message);
     }
 
-    private function MessageHandler(string $device_token): CloudMessage
+    private function TokenMessageHandler(string $device_token): CloudMessage
     {
+        $array = $this->MessageArrayHandler();
         $array['token'] = $device_token;
+
+        return CloudMessage::fromArray($array);
+    }
+
+    private function MessageArrayHandler(): array
+    {
+        $array = array();
         if(!empty($this->notification)){
             $array['notification'] = $this->notification;
         }
@@ -83,7 +91,7 @@ class FcmSender
                 }
             }
         }
-        return CloudMessage::fromArray($array);
+        return $array;
     }
 
     private function JsonFormat($array): string
