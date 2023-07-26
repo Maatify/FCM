@@ -14,7 +14,7 @@
 > 
 > View kreait/firebase-php [Docs](https://firebase-php.readthedocs.io/en/stable/cloud-messaging.html)
 > 
-> View kreait/firebase-php on [Github](https://github.com/kreait/firebase-php)
+> View kreait/firebase-php on [GitHub](https://github.com/kreait/firebase-php)
 > 
 
 
@@ -141,9 +141,9 @@ $topic_manager = $message->TopicManagement();
 > Note: for all Topic Management 
 > - `$registrationTokenOrTokens` can be string if one token or array if many tokens
 >  ```PHP 
->   $registrationTokenOrTokens = __device_token__;
->   // or
->   $registrationTokenOrTokens = [__device_token1__, __device_token2__];
+>  $registrationTokenOrTokens = __device_token__;
+>  // or
+>  $registrationTokenOrTokens = [__device_token1__, __device_token2__];
 >   ```
 > - `$topic` is device token in string
 >   ```PHP 
