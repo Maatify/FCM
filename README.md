@@ -24,7 +24,7 @@ $message = new FcmHandler(__credentials_json_file__);
 ### Notification Setter For FCM
 ```PHP
 // Optional
-$message->SetNotification('My Custom Title', 'My Custom ', __image_url__ = '');
+$message->SetNotification('My Custom Title', 'My Custom Body', __image_url__ = '');
 ```
 
 ### Data Setter For FCM 
