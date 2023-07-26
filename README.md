@@ -60,3 +60,19 @@ $result = $message->sender->ToMultipleDevicesToken([__device_token1__, __device_
 
 print_r($result);
 ```
+
+### Send FCM To Topic
+```PHP
+
+try {
+    // $message->sender cannot callable before setting at least one of optional setter
+    $result = $message->sender->ToTopic(__topic__);
+    
+} catch (MessagingException|FirebaseException $e) {
+
+    $result = (array) $e;
+
+}
+
+print_r($result);
+```

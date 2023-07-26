@@ -71,7 +71,13 @@ class FcmSender
     {
         $array = $this->MessageArrayHandler();
         $array['token'] = $device_token;
+        return CloudMessage::fromArray($array);
+    }
 
+    public function ToTopic(string $topic): CloudMessage
+    {
+        $array = $this->MessageArrayHandler();
+        $array['topic'] = $topic;
         return CloudMessage::fromArray($array);
     }
 

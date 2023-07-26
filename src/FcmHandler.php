@@ -53,19 +53,11 @@ class FcmHandler
         return $this;
     }
 
-
     public function SetDate(array $data): static
     {
         $this->data = $data;
         $this->sender = new FcmSender($this->firebase_credentials_json, $this->notification, $this->data);
         return $this;
     }
-
-    public function Sender(): FcmSender
-    {
-        return $this->sender;
-    }
-
-
 
 }
