@@ -3,7 +3,7 @@
 [![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/maatify/google-fcm)][pkg]
 [![Monthly Downloads](https://img.shields.io/packagist/dm/maatify/google-fcm)][pkg-stats]
 [![Total Downloads](https://img.shields.io/packagist/dt/maatify/google-fcm)][pkg-stats]
-[![Stars](https://img.shields.io/packagist/stars/maatify/google-fcm)](https://github.com/maatify/FCM/stargazers)
+[![Stars](https://img.shields.io/packagist/stars/maatify/google-fcm)](https://github.com/maatify/google-fcm/stargazers)
 
 [pkg]: <https://packagist.org/packages/maatify/google-fcm>
 [pkg-stats]: <https://packagist.org/packages/maatify/google-fcm/stats>
